@@ -2,19 +2,19 @@ import React from 'react';
 
 const appointments = [
   {
-    patientName: 'John Doe',
-    time: '10:00 AM',
-    reason: 'Check-up',
+    nomePaciente: 'John Doe',
+    documentoPaciente: "123.123.123.23",
+    dataAgendamento: '22/03/2024',
   },
   {
-    patientName: 'Jane Smith',
-    time: '11:30 AM',
-    reason: 'Dental cleaning',
+    nomePaciente: 'John Doe',
+    documentoPaciente: "123.123.123.23",
+    dataAgendamento: '22/03/2024',
   },
   {
-    patientName: 'Alice Johnson',
-    time: '02:00 PM',
-    reason: 'Consultation',
+    nomePaciente: 'John Doe',
+    documentoPaciente: "123.123.123.23",
+    dataAgendamento: '22/03/2024',
   },
   // Adicione mais compromissos conforme necessário
 ];
@@ -28,9 +28,9 @@ export default function Agenda() {
           <li key={index} className="py-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 truncate">{appointment.patientName}</p>
-                <p className="mt-1 text-sm text-gray-500">{appointment.time}</p>
-                <p className="mt-1 text-sm text-gray-500">{appointment.reason}</p>
+                <p className="text-sm font-semibold text-gray-900 truncate">{appointment.nomePaciente}</p>
+                <p className="mt-1 text-sm text-gray-500">{appointment.documentoPaciente}</p>
+                <p className="mt-1 text-sm text-gray-500">{appointment.dataAgendamento}</p>
               </div>
               <div className="flex-shrink-0">
                 <button className="px-4 py-2 bg-blue-500 text-white rounded-md">Editar</button>

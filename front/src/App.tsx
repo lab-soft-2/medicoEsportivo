@@ -14,6 +14,12 @@ import Exame from './pages/exames';
 function App() {
   return (
     <>
+    <Cadastro />
+    <EmitirReceitaGuia />
+    <EncaminhamentoPreparadorFisico />
+    <Dieta />
+    <Laudo />
+    <Agenda />
     <Exame />
     </>
   );

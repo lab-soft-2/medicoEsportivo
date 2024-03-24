@@ -5,6 +5,7 @@ export default function EmitirReceitaGuia() {
   const [patientDocument, setPatientDocument] = useState('');
   const [medicine, setMedicine] = useState('');
   const [quantity, setQuantity] = useState('');
+  const [use, setUse] = useState('');
   const [guide, setGuide] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -62,6 +63,18 @@ export default function EmitirReceitaGuia() {
           type="text"
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50"
+        />
+      </div>
+      <div className="mb-8">
+        <label htmlFor="use" className="block text-sm font-medium leading-6 text-gray-900">
+          Uso
+        </label>
+        <input
+          id="use"
+          type="text"
+          value={use}
+          onChange={(e) => setUse(e.target.value)}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50"
         />
       </div>

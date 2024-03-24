@@ -2,17 +2,18 @@ import React from 'react';
 
 const exams = [
   {
-    id: 1,
-    name: 'Raio-X do tórax',
-    date: '2024-03-20',
-    downloadLink: 'https://example.com/download/xray',
+    nomePaciente: "Jailson Mendes",
+    documentoPaciente: "123.123.123.23",
+    nomeExame: "Mamografia",
+    dataExame: "22/03/2024"
   },
   {
-    id: 2,
-    name: 'Exame de sangue',
-    date: '2024-03-22',
-    downloadLink: 'https://example.com/download/bloodtest',
-  },
+    nomePaciente: "Jailson Mendes",
+    documentoPaciente: "123.123.123.23",
+    nomeExame: "Mamografia",
+    dataExame: "22/03/2024"
+  }
+
   // Adicione mais exames conforme necessário
 ];
 
@@ -25,11 +26,12 @@ export default function ExamsView() {
           <li key={exam.id} className="py-4">
             <div className="flex items-center justify-between">
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900">{exam.name}</p>
-                <p className="mt-1 text-sm text-gray-500">Data: {exam.date}</p>
+                <p className="text-sm font-semibold text-gray-900">{exam.nomePaciente}</p>
+                <p className="mt-1 text-sm text-gray-500">CPF: {exam.documentoPaciente}</p>
+                <p className="mt-1 text-sm text-gray-500">Exame: {exam.nomeExame}</p>
               </div>
               <div className="flex-shrink-0">
-                <a href={exam.downloadLink} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-500 text-white rounded-md">Baixar</a>
+                <a href={exam.dataExame} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-500 text-white rounded-md">Baixar</a>
               </div>
             </div>
           </li>
