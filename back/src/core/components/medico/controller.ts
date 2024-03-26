@@ -62,13 +62,13 @@ export class MedicoController {
 
         const repository = new MedicoRepository(getRepository(Medico))
 
-        const Medico = await repository.findOneByEmail(email)
-        if (Medico && score) {
-            Medico.score = score
+        const medico = await repository.findOneByEmail(email)
+        if (medico && score) {
+            medico.score = score
 
-            repository.update(Medico)
+            repository.update(medico)
 
-            return res.status(200).json(Medico)
+            return res.status(200).json(medico)
         }
         return res.status(400).json({ "erro": "medico nao encontrado ou score nao enviado" })
     }
