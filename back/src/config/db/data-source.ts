@@ -6,7 +6,7 @@ export const MainDataSource = new DataSource({
 	port: Number(process.env.TYPEORM_PORT ?? '5432'),
 	username: process.env.TYPEORM_USERNAME ?? 'postgres',
 	password: process.env.TYPEORM_PASSWORD ?? 'postgres',
-	database: process.env.TYPEORM_DATABASE ?? 'patient_db',
+	database: process.env.TYPEORM_DATABASE ?? 'medic_db',
 	entities: [process.env.TYPEORM_ENTITIES ?? 'src/core/components/**/entity.ts'],
 	migrations: [process.env.TYPEORM_MIGRATIONS ?? 'src/config/db/migration/**/*.ts'],
 	synchronize: false,
