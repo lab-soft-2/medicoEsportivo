@@ -39,6 +39,7 @@ export class MedicoController {
         const repository = new MedicoRepository(getRepository(Medico))
 
         const entity = await repository.findAll()
+        console.log(entity)
 
         return res.status(200).json(entity)
     }
