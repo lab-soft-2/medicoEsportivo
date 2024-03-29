@@ -163,7 +163,7 @@ export class MedicoController {
         const options = {
             hostname: 'localhost',
             port: 3000,
-            path: '/patient//user/update/condition',
+            path: '/patient/finalizar/consulta',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
