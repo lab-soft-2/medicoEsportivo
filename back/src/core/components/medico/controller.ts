@@ -176,7 +176,7 @@ export class MedicoController {
             console.log(result)
             return res.status(200).json({ "Documento criado": result })
         });
-        return res.status(200).json({ "Documento criado": result })
+        // return res.status(200).json({ "Documento criado" })
     }
 
     static async updatePaciente(req: Request, res: Response) {
