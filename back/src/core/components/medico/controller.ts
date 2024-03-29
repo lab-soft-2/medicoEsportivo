@@ -159,7 +159,7 @@ export class MedicoController {
                 'Content-Length': data.length
             }
         }
-        const request = https.request(options, res => {
+        const request = http.request(options, res => {
             console.log(`statusCode: ${res.statusCode}`)
             res.on('data', d => {
                 process.stdout.write(d)
