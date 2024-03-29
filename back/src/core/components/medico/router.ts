@@ -39,7 +39,7 @@ Router.post(
 );
 
 
-Router.post(
+Router.get(
   "/vizualizar/exame",
   MedicoController.exames
 );
