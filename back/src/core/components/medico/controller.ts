@@ -152,7 +152,6 @@ export class MedicoController {
         const { paciente,medico, newcondition,consulta } = req.body;
         const http = require('node:http')
 
-
         const data = JSON.stringify(
             {
                 "medico": medico,
@@ -160,6 +159,7 @@ export class MedicoController {
                 "newcondition": newcondition,
                 "consulta": consulta
             })
+            console.log(data)
         const options = {
             hostname: 'localhost',
             port: 3000,
