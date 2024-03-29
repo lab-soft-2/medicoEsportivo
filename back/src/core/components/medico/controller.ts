@@ -169,12 +169,14 @@ export class MedicoController {
             console.error(error)
         })
         request.write(data)
+        request.end();
 
         request.on('end', result => {
             console.log('end')
             console.log(result)
             return res.status(200).json({ "Documento criado": result })
         });
+        return res.status(200).json({ "Documento criado": result })
     }
 
     static async updatePaciente(req: Request, res: Response) {
