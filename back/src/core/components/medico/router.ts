@@ -40,7 +40,7 @@ Router.post(
 
 
 Router.post(
-  "/user/exames",
+  "/vizualizar/exame",
   MedicoController.exames
 );
 

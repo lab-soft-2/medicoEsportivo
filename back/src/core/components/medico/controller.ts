@@ -191,7 +191,33 @@ export class MedicoController {
 
     static async exames(req: Request, res: Response) {
 
-        return res.status(200).json({ "depende do paciente": "sim" })
+        const { email } = req.body;
+        const http = require('node:http')
+
+        const resp = http.get({
+            hostname: 'localhost',
+            port: 3000,
+            path: '/patient/vizualizar/exame',
+            body: {
+                "email": email
+            }
+
+        }, (resp) => {
+            let data = '';
+            // Um bloco de dados foi recebido.
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            // Toda a resposta foi recebida. Exibir o resultado.
+            resp.on('end', () => {
+                return res
+                    .status(200).json(JSON.parse(data))
+            });
+
+        }).on("error", (err) => {
+            console.log("Error: " + err.message);
+        })
     }
 
 }
