@@ -96,7 +96,6 @@ export class MedicoController {
 
             // Toda a resposta foi recebida. Exibir o resultado.
             resp.on('end', () => {
-                console.log(data);
                 return res
                     .status(200).json(JSON.parse(data))
             });
@@ -111,36 +110,6 @@ export class MedicoController {
 
         const { profissional, paciente, documento } = req.body;
         const http = require('node:http')
-
-
-        // const resp = http.request({
-        //     hostname: 'localhost',
-        //     port: 3000,
-        //     path: '/patient/postar/documento',
-        //     method: 'POST',
-        //     body: {
-        //         "profissional": profissional,
-        //         "paciente": paciente,
-        //         "documento": documento
-        //     }
-
-        // }, (resp) => {
-        //     let data = '';
-        //     // Um bloco de dados foi recebido.
-        //     resp.on('data', (chunk) => {
-        //         data += chunk;
-        //     });
-
-        //     // Toda a resposta foi recebida. Exibir o resultado.
-        //     resp.on('end', () => {
-        //         console.log(data);
-        //         return res
-        //             .status(200).json(JSON.parse(data))
-        //     });
-
-        // }).on("error", (err) => {
-        //     console.log("Error: " + err.message);
-        // })
 
 
         const data = JSON.stringify(
@@ -166,9 +135,7 @@ export class MedicoController {
             })
 
             res.on('end', result => {
-                console.log('end')
-                console.log(res)
-                return
+                return result
             })
         })
         request.on('error', error => {
@@ -177,7 +144,9 @@ export class MedicoController {
         request.write(data)
         request.end();
 
-        return res.status(200).json({ "Documento criado": 'result' })
+        console.log(request)
+
+        return res.status(200).json({ "mensagem":"Documento criado"})
     }
 
     static async updatePaciente(req: Request, res: Response) {
