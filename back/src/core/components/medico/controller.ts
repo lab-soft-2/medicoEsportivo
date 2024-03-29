@@ -171,7 +171,9 @@ export class MedicoController {
         request.write(data)
 
         request.on('end', result => {
-            res.status(200).json({ "Documento criado": result })
+            console.log('end')
+            console.log(result)
+            return res.status(200).json({ "Documento criado": result })
         });
     }
 
