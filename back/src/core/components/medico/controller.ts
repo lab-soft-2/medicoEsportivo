@@ -106,14 +106,39 @@ export class MedicoController {
         })
     }
 
-    static async agendaPaciente(req: Request, res: Response) {
-
-        return res.status(200).json({ "depende do paciente": "sim" })
-    }
 
     static async emitirDocumento(req: Request, res: Response) {
 
-        return res.status(200).json({ "depende do paciente": "sim" })
+        const { profissional, paciente, documento } = req.body;
+        const http = require('node:http')
+
+        const resp = http.get({
+            hostname: 'localhost',
+            port: 3000,
+            path: '/patient/postar/documento',
+            body: {
+                "profissional": profissional,
+                "paciente": paciente,
+                "documento": documento
+            }
+
+        }, (resp) => {
+            let data = '';
+            // Um bloco de dados foi recebido.
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+
+            // Toda a resposta foi recebida. Exibir o resultado.
+            resp.on('end', () => {
+                console.log(data);
+                return res
+                    .status(200).json(JSON.parse(data))
+            });
+
+        }).on("error", (err) => {
+            console.log("Error: " + err.message);
+        })
     }
 
     static async updatePaciente(req: Request, res: Response) {

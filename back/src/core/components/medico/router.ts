@@ -27,13 +27,9 @@ Router.get(
   MedicoController.agendaMedico
 );
 
-Router.post(
-  "/user/agenda/paciente",
-  MedicoController.agendaPaciente
-);
 
 Router.post(
-  "/user/emitir/documento",
+  "/emitir/documento",
   MedicoController.emitirDocumento
 );
 
