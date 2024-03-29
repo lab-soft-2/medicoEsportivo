@@ -111,11 +111,13 @@ export class MedicoController {
 
         const { profissional, paciente, documento } = req.body;
         const http = require('node:http')
+        
 
-        const resp = http.post({
+        const resp = http.request({
             hostname: 'localhost',
             port: 3000,
             path: '/patient/postar/documento',
+            method: 'POST',
             body: {
                 "profissional": profissional,
                 "paciente": paciente,
