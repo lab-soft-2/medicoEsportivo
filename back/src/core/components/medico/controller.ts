@@ -111,36 +111,65 @@ export class MedicoController {
 
         const { profissional, paciente, documento } = req.body;
         const http = require('node:http')
-        
 
-        const resp = http.request({
+
+        // const resp = http.request({
+        //     hostname: 'localhost',
+        //     port: 3000,
+        //     path: '/patient/postar/documento',
+        //     method: 'POST',
+        //     body: {
+        //         "profissional": profissional,
+        //         "paciente": paciente,
+        //         "documento": documento
+        //     }
+
+        // }, (resp) => {
+        //     let data = '';
+        //     // Um bloco de dados foi recebido.
+        //     resp.on('data', (chunk) => {
+        //         data += chunk;
+        //     });
+
+        //     // Toda a resposta foi recebida. Exibir o resultado.
+        //     resp.on('end', () => {
+        //         console.log(data);
+        //         return res
+        //             .status(200).json(JSON.parse(data))
+        //     });
+
+        // }).on("error", (err) => {
+        //     console.log("Error: " + err.message);
+        // })
+
+
+        const data = JSON.stringify(
+            {
+                "profissional": profissional,
+                "paciente": paciente,
+                "documento": documento
+            })
+        const options = {
             hostname: 'localhost',
             port: 3000,
             path: '/patient/postar/documento',
             method: 'POST',
-            body: {
-                "profissional": profissional,
-                "paciente": paciente,
-                "documento": documento
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
             }
-
-        }, (resp) => {
-            let data = '';
-            // Um bloco de dados foi recebido.
-            resp.on('data', (chunk) => {
-                data += chunk;
-            });
-
-            // Toda a resposta foi recebida. Exibir o resultado.
-            resp.on('end', () => {
-                console.log(data);
-                return res
-                    .status(200).json(JSON.parse(data))
-            });
-
-        }).on("error", (err) => {
-            console.log("Error: " + err.message);
+        }
+        const req = https.request(options, res => {
+            console.log(`statusCode: ${res.statusCode}`)
+            res.on('data', d => {
+                process.stdout.write(d)
+            })
         })
+        req.on('error', error => {
+            console.error(error)
+        })
+        req.write(data)
+        req.end()
     }
 
     static async updatePaciente(req: Request, res: Response) {
