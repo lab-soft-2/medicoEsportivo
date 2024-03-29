@@ -147,9 +147,46 @@ export class MedicoController {
         return res.status(200).json({ "Documento criado":request['outputData']})
     }
 
-    static async updatePaciente(req: Request, res: Response) {
+    static async finalizarConsulta(req: Request, res: Response) {
 
-        return res.status(200).json({ "depende do paciente": "sim" })
+        const { paciente,medico, newcondition,consulta } = req.body;
+        const http = require('node:http')
+
+
+        const data = JSON.stringify(
+            {
+                "medico": medico,
+                "paciente": paciente,
+                "newcondition": newcondition,
+                "consulta": consulta
+            })
+        const options = {
+            hostname: 'localhost',
+            port: 3000,
+            path: '/patient//user/update/condition',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+            }
+        }
+        const request = http.request(options, res => {
+            console.log(`statusCode: ${res.statusCode}`)
+            res.on('data', d => {
+                process.stdout.write(d)
+            })
+
+            res.on('end', result => {
+                return result
+            })
+        })
+        request.on('error', error => {
+            console.error(error)
+        })
+        request.write(data)
+        request.end();
+
+        return res.status(200).json({ "Documento criado":request['outputData']})
     }
 
     static async exames(req: Request, res: Response) {

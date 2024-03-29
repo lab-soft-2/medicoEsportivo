@@ -34,8 +34,8 @@ Router.post(
 );
 
 Router.post(
-  "/user/atualizar/paciente/condicao",
-  MedicoController.updatePaciente
+  "/finalizar/consulta",
+  MedicoController.finalizarConsulta
 );
 
 
