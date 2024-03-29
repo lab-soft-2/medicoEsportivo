@@ -7,10 +7,10 @@ Router.get(
   MedicoController.getByEmail
 );
 
-// Router.get(
-//   "/user/all",
-//   MedicoController.getAll
-// );
+Router.get(
+  "/user/all",
+  MedicoController.getAll
+);
 
 Router.post(
   "/user/delete/email",
