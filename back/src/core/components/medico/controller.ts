@@ -164,19 +164,18 @@ export class MedicoController {
             res.on('data', d => {
                 process.stdout.write(d)
             })
+
+            res.on('end', result => {
+                console.log('end')
+                console.log(result)
+                return res.status(200).json({ "Documento criado": result })
+            })
         })
         request.on('error', error => {
             console.error(error)
         })
         request.write(data)
         request.end();
-
-        request.on('end', result => {
-            console.log('end')
-            console.log(result)
-            return res.status(200).json({ "Documento criado": result })
-        });
-        // return res.status(200).json({ "Documento criado" })
     }
 
     static async updatePaciente(req: Request, res: Response) {
