@@ -22,8 +22,8 @@ Router.post(
   MedicoController.updateMedicoScore
 );
 
-Router.post(
-  "/user/agenda/medico",
+Router.get(
+  "/vizualizar/agenda",
   MedicoController.agendaMedico
 );
 
