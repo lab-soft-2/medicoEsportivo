@@ -1,13 +1,32 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Api from '../../services/api';
+import { URL_PATHS } from '../../services/pathUrl';
 
-export default function EmitirReceitaGuia() {
+const EmitirReceitaGuia: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
   const [emailPaciente, setEmailPaciente] = useState('');
   const [documento, setDocumento] = useState('');
+  const [resultadoEmissao, setResultadoEmissao] = useState<string | null>(null);
+  const [erroEmissao, setErroEmissao] = useState<string | null>(null);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Aqui você pode implementar a lógica para enviar os dados do formulário para onde for necessário
+
+    try {
+      const response = await Api.post(URL_PATHS.EMITIR_RECEITA_GUIA, {
+        "email profissional": emailMedico,
+        "email paciente": emailPaciente,
+        documento: JSON.parse(documento)
+      });
+
+      // Define o resultado da emissão para mostrar sucesso
+      setResultadoEmissao('Receita ou guia emitida com sucesso!');
+      setErroEmissao(null);
+    } catch (error) {
+      // Define uma mensagem de erro para mostrar falha na emissão
+      setErroEmissao('Ocorreu um erro ao emitir a receita ou guia. Por favor, tente novamente.');
+      setResultadoEmissao(null);
+    }
   };
 
   return (
@@ -16,39 +35,41 @@ export default function EmitirReceitaGuia() {
         Emitir Receita & Guia
       </h2>
       <div className="mb-8">
-        <label htmlFor="patientName" className="block text-sm font-medium leading-6 text-gray-900">
+        <label htmlFor="emailMedico" className="block text-sm font-medium leading-6 text-gray-900">
           Email Médico
         </label>
         <input
           id="emailMedico"
-          type="text"
+          type="email"
           value={emailMedico}
           onChange={(e) => setEmailMedico(e.target.value)}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50"
+          required
         />
       </div>
       <div className="mb-8">
-        <label htmlFor="patientDocument" className="block text-sm font-medium leading-6 text-gray-900">
+        <label htmlFor="emailPaciente" className="block text-sm font-medium leading-6 text-gray-900">
           Email Paciente
         </label>
         <input
           id="emailPaciente"
-          type="text"
+          type="email"
           value={emailPaciente}
           onChange={(e) => setEmailPaciente(e.target.value)}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50"
+          required
         />
       </div>
       <div className="mb-8">
-        <label htmlFor="medicine" className="block text-sm font-medium leading-6 text-gray-900">
+        <label htmlFor="documento" className="block text-sm font-medium leading-6 text-gray-900">
           Documento
         </label>
-        <input
+        <textarea
           id="documento"
-          type="text"
           value={documento}
           onChange={(e) => setDocumento(e.target.value)}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50 h-32"
+          required
         />
       </div>
       <div className="mt-8">
@@ -59,6 +80,19 @@ export default function EmitirReceitaGuia() {
           Emitir
         </button>
       </div>
+      {/* Mostrar mensagem de sucesso ou erro */}
+      {resultadoEmissao && (
+        <div className="text-green-600 mt-4 text-center">
+          {resultadoEmissao}
+        </div>
+      )}
+      {erroEmissao && (
+        <div className="text-red-600 mt-4 text-center">
+          {erroEmissao}
+        </div>
+      )}
     </form>
   );
-}
+};
+
+export default EmitirReceitaGuia;

@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
+import Api from '../../services/api'; // Importe o serviço de API
+import { URL_PATHS } from '../../services/pathUrl';
 
 const Agenda: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
-  const [consultas, setConsultas] = useState<any[]>([]);
+  const [consultas, setConsultas] = useState<any[]>([]); // Estado para armazenar as consultas
+  const [erroConsulta, setErroConsulta] = useState<string | null>(null); // Estado para armazenar mensagens de erro
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aqui você faria a chamada para a API para enviar o email do médico
-    // e receberia as consultas como resposta
-    // Por enquanto, apenas atualizamos o estado com dados de exemplo
-    const response = await fetch('sua-url-da-api/consultas', {
-      method: 'POST',
-      body: JSON.stringify({ emailMedico }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json();
-    setConsultas(data);
+
+    try {
+      const response = await Api.get(URL_PATHS.VISUALIZAR_AGENDA, {
+        params: { email: emailMedico } // Passando o email do médico como parâmetro da requisição
+      });
+      setConsultas(response.data); // Define as consultas recebidas da API
+      setErroConsulta(null); // Limpa mensagens de erro
+    } catch (error) {
+      setErroConsulta('Erro ao buscar agenda.'); // Define mensagem de erro em caso de falha na requisição
+      setConsultas([]); // Limpa consultas em caso de erro
+    }
   };
 
   return (
@@ -35,13 +37,20 @@ const Agenda: React.FC = () => {
               value={emailMedico}
               onChange={(e) => setEmailMedico(e.target.value)}
             />
-           <button
-            type="submit"
-            className="py-2 px-4 bg-indigo-600 text-white rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-            Visualizar
-          </button>
+            <button
+              type="submit"
+              className="py-2 px-4 bg-indigo-600 text-white rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+              Visualizar
+            </button>
           </div>
         </form>
+        {/* Mostrar mensagem de erro, se houver */}
+        {erroConsulta && (
+          <div className="text-red-600 mt-4 text-center">
+            {erroConsulta}
+          </div>
+        )}
+        {/* Mostrar consultas */}
         <div className="grid grid-cols-1 gap-8">
           {consultas.map((consulta, index) => (
             <div key={index} className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -57,6 +66,6 @@ const Agenda: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Agenda;
