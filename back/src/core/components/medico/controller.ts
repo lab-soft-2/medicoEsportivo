@@ -159,17 +159,17 @@ export class MedicoController {
                 'Content-Length': data.length
             }
         }
-        const req = https.request(options, res => {
+        const request = https.request(options, res => {
             console.log(`statusCode: ${res.statusCode}`)
             res.on('data', d => {
                 process.stdout.write(d)
             })
         })
-        req.on('error', error => {
+        request.on('error', error => {
             console.error(error)
         })
-        req.write(data)
-        req.end()
+        request.write(data)
+        request.end()
     }
 
     static async updatePaciente(req: Request, res: Response) {
