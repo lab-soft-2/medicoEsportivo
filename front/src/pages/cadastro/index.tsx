@@ -35,12 +35,12 @@ const CadastroMedico: React.FC = () => {
 
             <div>
               <label htmlFor="sobrenome" className="block text-sm font-medium leading-6 text-gray-900">
-                Sobrenome
+                Email
               </label>
               <div className="mt-2">
                 <input
-                  id="sobrenome"
-                  name="sobrenome"
+                  id="email"
+                  name="email"
                   type="text"
                   autoComplete="family-name"
                   required
@@ -51,40 +51,22 @@ const CadastroMedico: React.FC = () => {
 
             <div>
               <label htmlFor="data_nascimento" className="block text-sm font-medium leading-6 text-gray-900">
-                Data de Nascimento
+                Senha
               </label>
               <div className="mt-2">
                 <input
-                  id="data_nascimento"
-                  name="data_nascimento"
-                  type="date"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="crm" className="block text-sm font-medium leading-6 text-gray-900">
-                CRM
-              </label>
-              <div className="mt-2">
-                <input
-                  id="crm"
-                  name="crm"
+                  id="senha"
+                  name="senha"
                   type="text"
-                  autoComplete="off"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Cadastrar
               </button>
             </div>

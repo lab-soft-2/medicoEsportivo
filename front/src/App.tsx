@@ -4,9 +4,7 @@ import Cadastro from './pages/cadastro/index'
 
 import NavNova from './components/navNova/'
 import EmitirReceitaGuia from './pages/emitirReceitaGuia';
-import EncaminhamentoPreparadorFisico from './pages/encaminhamentoPreparador';
-import Dieta from './pages/dieta';
-import Laudo from './pages/laudo';
+import Laudo from './pages/condicaoPaciente';
 
 import Agenda from './pages/agenda';
 import Exame from './pages/exames';
@@ -16,8 +14,6 @@ function App() {
     <>
     <Cadastro />
     <EmitirReceitaGuia />
-    <EncaminhamentoPreparadorFisico />
-    <Dieta />
     <Laudo />
     <Agenda />
     <Exame />
