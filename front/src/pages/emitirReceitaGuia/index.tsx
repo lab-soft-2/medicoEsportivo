@@ -6,7 +6,7 @@ const EmitirReceitaGuia: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
   const [emailPaciente, setEmailPaciente] = useState('');
   const [documento, setDocumento] = useState('');
-  const [resultadoEmissao, setResultadoEmissao] = useState<string | null>(null);
+  const [resultadoEmissao, setResultadoEmissao] = useState<any | null>(null);
   const [erroEmissao, setErroEmissao] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -19,8 +19,8 @@ const EmitirReceitaGuia: React.FC = () => {
         documento: JSON.parse(documento)
       });
 
-      // Define o resultado da emissão para mostrar sucesso
-      setResultadoEmissao('Receita ou guia emitida com sucesso!');
+      // Define a resposta da emissão para mostrar na tela
+      setResultadoEmissao(response.data);
       setErroEmissao(null);
     } catch (error) {
       // Define uma mensagem de erro para mostrar falha na emissão
@@ -62,7 +62,7 @@ const EmitirReceitaGuia: React.FC = () => {
       </div>
       <div className="mb-8">
         <label htmlFor="documento" className="block text-sm font-medium leading-6 text-gray-900">
-          Documento
+          Documento (JSON)
         </label>
         <textarea
           id="documento"
@@ -83,7 +83,7 @@ const EmitirReceitaGuia: React.FC = () => {
       {/* Mostrar mensagem de sucesso ou erro */}
       {resultadoEmissao && (
         <div className="text-green-600 mt-4 text-center">
-          {resultadoEmissao}
+          Receita ou guia emitida com sucesso!
         </div>
       )}
       {erroEmissao && (

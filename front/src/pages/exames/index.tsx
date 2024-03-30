@@ -5,7 +5,7 @@ import { URL_PATHS } from '../../services/pathUrl';
 const Exames: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
   const [emailPaciente, setEmailPaciente] = useState('');
-  const [exames, setExames] = useState<any[]>([]);
+  const [exame, setExame] = useState<any | null>(null);
   const [erroVisualizacao, setErroVisualizacao] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,10 +19,10 @@ const Exames: React.FC = () => {
         }
       });
 
-      setExames(response.data);
+      setExame(response.data);
       setErroVisualizacao(null);
     } catch (error) {
-      setExames([]);
+      setExame(null);
       setErroVisualizacao('Ocorreu um erro ao buscar os exames. Por favor, tente novamente.');
     }
   };
@@ -61,22 +61,16 @@ const Exames: React.FC = () => {
             {erroVisualizacao}
           </div>
         )}
-        <div className="grid grid-cols-1 gap-8">
-          {exames.length > 0 ? (
-            exames.map((exame, index) => (
-              <div key={index} className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div className="p-6">
-                  <p className="text-lg font-semibold text-gray-900">Exame {index + 1}</p>
-                  <p className="text-sm text-gray-500">Email Médico: {exame.emailMedico}</p>
-                  <p className="text-sm text-gray-500">Email Paciente: {exame.emailPaciente}</p>
-                  {/* Adicione mais informações dos exames conforme necessário */}
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="text-gray-500 text-center">Nenhum exame encontrado.</div>
-          )}
-        </div>
+        {exame && (
+          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="p-6">
+              <p className="text-lg font-semibold text-gray-900">Exame</p>
+              <p className="text-sm text-gray-500">Email Médico: {exame.emailMedico}</p>
+              <p className="text-sm text-gray-500">Email Paciente: {exame.emailPaciente}</p>
+              {/* Adicione mais informações dos exames conforme necessário */}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

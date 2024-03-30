@@ -14,7 +14,7 @@ const Agenda: React.FC = () => {
       const response = await Api.get(URL_PATHS.VISUALIZAR_AGENDA, {
         params: { email: emailMedico } // Passando o email do médico como parâmetro da requisição
       });
-      setConsultas(response.data); // Define as consultas recebidas da API
+      setConsultas([response.data]); // Define a resposta da API como um único elemento do array de consultas
       setErroConsulta(null); // Limpa mensagens de erro
     } catch (error) {
       setErroConsulta('Erro ao buscar agenda.'); // Define mensagem de erro em caso de falha na requisição
