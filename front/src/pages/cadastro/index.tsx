@@ -6,24 +6,21 @@ const CadastroMedico: React.FC = () => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [resultadoCadastro, setResultadoCadastro] = useState<string | null>(null);
+  const [resultadoCadastro, setResultadoCadastro] = useState<any>(null);
   const [erroCadastro, setErroCadastro] = useState<string | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      // Aqui podemos simular uma resposta da API, já que não estamos realmente conectados a uma API neste ambiente
-      const respostaApi = {
-        mensagem: "Cadastro realizado com sucesso!",
-        medico: {
-          nome: nome,
-          email: email
-        }
-      };
+      const response = await Api.post(URL_PATHS.CADASTRO, {
+        nome,
+        email,
+        senha
+      });
 
       // Define o resultado do cadastro para mostrar sucesso
-      setResultadoCadastro(JSON.stringify(respostaApi));
+      setResultadoCadastro(response.data);
       setErroCadastro(null);
     } catch (error) {
       // Define uma mensagem de erro para mostrar falha no cadastro
@@ -112,12 +109,15 @@ const CadastroMedico: React.FC = () => {
         </div>
       </div>
 
-      {/* Mostrar mensagem de sucesso ou erro */}
+      {/* Mostrar mensagem de sucesso */}
       {resultadoCadastro && (
         <div className="text-green-600 mt-4 text-center">
-          {resultadoCadastro}
+          <p>{resultadoCadastro.mensagem}</p>
+          <p>Nome: {resultadoCadastro.medico.nome}</p>
+          <p>Email: {resultadoCadastro.medico.email}</p>
         </div>
       )}
+      {/* Mostrar mensagem de erro */}
       {erroCadastro && (
         <div className="text-red-600 mt-4 text-center">
           {erroCadastro}
