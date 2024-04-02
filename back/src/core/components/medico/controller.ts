@@ -23,6 +23,23 @@ export class MedicoController {
             .json({ message: "User created successfully", Medico });
     }
 
+    static async medicoLogin(req: Request, res: Response) {
+        const log = logger({ context: 'App' })
+
+        const { email, password } = req.body;
+
+        const repository = new MedicoRepository(getRepository(Medico))
+
+        const medico = await repository.findOneByEmail(email)
+
+
+
+        if (medico?.password == password) {
+            return res.status(200).json(medico)
+        }
+        return res.status(400).json({ "erro": "Erro de autenticacao" })
+    }
+
     static async getByEmail(req: Request, res: Response) {
 
         const { email } = req.body;

@@ -46,6 +46,10 @@ Router.get(
 
 
 Router.post("/signup", MedicoController.signup);
+Router.post(
+  "/login",
+  MedicoController.medicoLogin
+);
 
 
 export { Router as medicoRouter };
