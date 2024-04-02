@@ -11,7 +11,7 @@ import PageNotFound from '../pages/notFound'
 
 const Rotas: React.FC = () => {
     return(
-        <BrowserRouter>
+        <BrowserRouter basename={"/medico"}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/medico/home" element={<Home />} />
