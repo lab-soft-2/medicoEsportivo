@@ -2,6 +2,7 @@
   "name": "saudedigital",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/medico",
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
@@ -22,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mkdir build/medico && mv build/static build/medico/static",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
