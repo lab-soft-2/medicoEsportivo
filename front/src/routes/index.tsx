@@ -14,12 +14,12 @@ const Rotas: React.FC = () => {
     <BrowserRouter basename={"/medico"}>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/medico/home" element={<Home />} />
-                <Route path="/medico/signup" element={<Cadastro />} />
-                <Route path="/medico/emitir/documento" element={<EmitirReceitaGuia />} />
-                <Route path="/medico/vizualizar/agenda" element={<Agenda />} />
-                <Route path="/medico/vizualizar/exame" element={<Exame />} />
-                <Route path="/medico/finalizar/consulta" element={<Laudo />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/signup" element={<Cadastro />} />
+                <Route path="/emitir/documento" element={<EmitirReceitaGuia />} />
+                <Route path="/vizualizar/agenda" element={<Agenda />} />
+                <Route path="/vizualizar/exame" element={<Exame />} />
+                <Route path="/finalizar/consulta" element={<Laudo />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
