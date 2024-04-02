@@ -1,18 +1,18 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import React from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Emitir Receita e Guia', href: '/emitir-receita-guia' },
-  { name: 'Laudo', href: '/laudo' },
-  { name: 'Dieta', href: '/dieta' },
-  { name: 'Encaminhamento', href: '/encaminhamentoPreparadorFisico' },
-  // Adicione aqui os links para as outras telas
-]
+  { name: 'Home', href: '/medico/home' },
+  { name: 'Cadastro', href: '/medico/signup' },
+  { name: 'Emitir Receita e Guia', href: '/medico/emitir/documento' },
+  { name: 'Agenda', href: '/medico/vizualizar/agenda' },
+  { name: 'Exame', href: '/medico/vizualizar/exame' },
+  { name: 'Status - Paciente', href: '/medico/finalizar/consulta' },
+];
 
-function classNames(...classes: string[]) {
+function classNames(...classes: (string | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -84,7 +84,7 @@ export default function Navbar() {
                     </Menu.Button>
                   </div>
                   <Transition
-                    as={Fragment}
+                    as={React.Fragment}
                     enter="transition ease-out duration-100"
                     enterFrom="transform opacity-0 scale-95"
                     enterTo="transform opacity-100 scale-100"
@@ -149,5 +149,5 @@ export default function Navbar() {
         </>
       )}
     </Disclosure>
-  )
+  );
 }

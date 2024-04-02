@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Api from '../../services/api';
 import { URL_PATHS } from '../../services/pathUrl';
 
+import Navbar from '../../components/navBar';
+
 const Exames: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
   const [emailPaciente, setEmailPaciente] = useState('');
@@ -28,7 +30,9 @@ const Exames: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <>
+      <Navbar />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-8">
         <div className="pb-4">
           <h1 className="text-2xl font-semibold text-gray-900">Exames</h1>
@@ -73,6 +77,7 @@ const Exames: React.FC = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

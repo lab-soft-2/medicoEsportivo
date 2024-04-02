@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Api from '../../services/api';
 import { URL_PATHS } from '../../services/pathUrl';
+import Navbar from '../../components/navBar'
 
 const EmitirReceitaGuia: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
@@ -30,7 +31,9 @@ const EmitirReceitaGuia: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+    <>
+      <Navbar />
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
       <h2 className="mt-10 mb-4 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Emitir Receita & Guia
       </h2>
@@ -92,6 +95,7 @@ const EmitirReceitaGuia: React.FC = () => {
         </div>
       )}
     </form>
+    </>
   );
 };
 
