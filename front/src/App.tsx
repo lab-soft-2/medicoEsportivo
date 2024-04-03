@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Routes from './routes';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,12 +12,37 @@ import Home from './pages/home';
 
 import Navbar from './components/navBar';
 
+import { auth } from './firebase-config'
+import { signInWithCustomToken } from 'firebase/auth'
+
+
 function App() {
-  return (
-    <>
-      <Routes />
-    </>
-  );
+    const [user, setUser] = useState<any | null >(null);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const customToken = urlParams.get('token') ?? ''
+
+
+    useEffect(() => {
+        signInWithCustomToken(auth, customToken).then((user) => {
+            if (user) {
+                console.log("Usuário logado:", user);
+                setUser(user);
+            } else {
+                console.log('empty')
+            }
+        })
+    }, []);
+
+    if (!user) {
+        return <div>Carregando...</div>;
+    }
+
+      return (
+        <>
+          <Routes />
+        </>
+      );
 }
 
 export default App;
