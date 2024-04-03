@@ -7,10 +7,10 @@ Router.get(
   MedicoController.getByEmail
 );
 
-// Router.get(
-//   "/user/all",
-//   MedicoController.getAll
-// );
+Router.get(
+  "/user/all",
+  MedicoController.getAll
+);
 
 Router.post(
   "/user/delete/email",
@@ -22,34 +22,34 @@ Router.post(
   MedicoController.updateMedicoScore
 );
 
-Router.post(
-  "/user/agenda/medico",
+Router.get(
+  "/vizualizar/agenda",
   MedicoController.agendaMedico
 );
 
-Router.post(
-  "/user/agenda/paciente",
-  MedicoController.agendaPaciente
-);
 
 Router.post(
-  "/user/emitir/documento",
+  "/emitir/documento",
   MedicoController.emitirDocumento
 );
 
 Router.post(
-  "/user/atualizar/paciente/condicao",
-  MedicoController.updatePaciente
+  "/finalizar/consulta",
+  MedicoController.finalizarConsulta
 );
 
 
-Router.post(
-  "/user/exames",
+Router.get(
+  "/vizualizar/exame",
   MedicoController.exames
 );
 
 
 Router.post("/signup", MedicoController.signup);
+Router.post(
+  "/login",
+  MedicoController.medicoLogin
+);
 
 
 export { Router as medicoRouter };
