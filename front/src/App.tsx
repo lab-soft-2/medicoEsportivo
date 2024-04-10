@@ -24,17 +24,19 @@ function App() {
 
 
     useEffect(() => {
-        signInWithCustomToken(auth, customToken).then((user) => {
-            if (user) {
-                console.log("Usuário logado:", user);
-                setUser(user);
-            } else {
-                console.log('empty')
-            }
-        })
+        if (customToken) {
+            signInWithCustomToken(auth, customToken).then((user) => {
+                if (user) {
+                    console.log("Usuário logado:", user);
+                    setUser(user);
+                } else {
+                    console.log('empty')
+                }
+            })
+        }
     }, []);
 
-    if (!user) {
+    if (!user && process.env.NODE_ENV === 'production') {
         return <div>Carregando...</div>;
     }
 
