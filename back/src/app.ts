@@ -5,13 +5,13 @@ import {MedicoRepository} from './core/components/medico/repository'
 import {getRepository, MainDataSource} from './config/db/data-source'
 import {Medico} from './core/components/medico/entity'
 import { medicoRouter } from "./core/components/medico/router";
-import cors from 'cors';
 
 const PORT = env.serverPort
 const log = logger({ context: 'App' })
 
 async function main() {
 	const app = express()
+	const cors = require('cors')
 	// Nao funciona com formdata, usar json raw
 	app.use(express.json())
 
