@@ -18,6 +18,8 @@ export class MedicoController {
 
         repository.create(medico)
 
+        res.set('Access-Control-Allow-Origin', '*');
+
         return res
             .status(200)
             .json({ message: "User created successfully", Medico });
@@ -37,6 +39,9 @@ export class MedicoController {
         if (medico?.password == password) {
             return res.status(200).json(medico)
         }
+
+        res.set('Access-Control-Allow-Origin', '*');
+
         return res.status(400).json({ "erro": "Erro de autenticacao" })
     }
 
@@ -48,6 +53,8 @@ export class MedicoController {
 
         const entity = await repository.findOneByEmail(email)
 
+        res.set('Access-Control-Allow-Origin', '*');
+
         return res.status(200).json(entity)
     }
 
@@ -57,6 +64,8 @@ export class MedicoController {
 
         const entity = await repository.findAll()
         console.log(entity)
+
+        res.set('Access-Control-Allow-Origin', '*');
 
         return res.status(200).json(entity)
     }
@@ -68,6 +77,8 @@ export class MedicoController {
         const repository = new MedicoRepository(getRepository(Medico))
 
         const entity = await repository.deleteByEmail(email)
+
+        res.set('Access-Control-Allow-Origin', '*');
 
         return res.status(200).json(entity)
     }
@@ -86,8 +97,13 @@ export class MedicoController {
 
             repository.update(medico)
 
+            res.set('Access-Control-Allow-Origin', '*');
+
             return res.status(200).json(medico)
         }
+
+        res.set('Access-Control-Allow-Origin', '*');
+
         return res.status(400).json({ "erro": "medico nao encontrado ou score nao enviado" })
     }
 
@@ -97,8 +113,8 @@ export class MedicoController {
         const http = require('node:http')
 
         const resp = http.get({
-            hostname: 'localhost',
-            port: 3000,
+            hostname: process.env.PATIENT_SERVICE_HOST ?? 'localhost',
+            port: process.env.PATIENT_SERVICE_PORT ?? 3000,
             path: '/patient/vizualizar/agenda/medico',
             body: {
                 "email": email
@@ -113,6 +129,7 @@ export class MedicoController {
 
             // Toda a resposta foi recebida. Exibir o resultado.
             resp.on('end', () => {
+                res.set('Access-Control-Allow-Origin', '*');
                 return res
                     .status(200).json(JSON.parse(data))
             });
@@ -136,8 +153,8 @@ export class MedicoController {
                 "documento": documento
             })
         const options = {
-            hostname: 'localhost',
-            port: 3000,
+            hostname: process.env.PATIENT_SERVICE_HOST ?? 'localhost',
+            port: process.env.PATIENT_SERVICE_PORT ?? 3000,
             path: '/patient/postar/documento',
             method: 'POST',
             headers: {
@@ -161,6 +178,8 @@ export class MedicoController {
         request.write(data)
         request.end();
 
+        res.set('Access-Control-Allow-Origin', '*');
+
         return res.status(200).json({ "Documento criado":request['outputData']})
     }
 
@@ -178,8 +197,8 @@ export class MedicoController {
             })
             console.log(data)
         const options = {
-            hostname: 'localhost',
-            port: 3000,
+            hostname: process.env.PATIENT_SERVICE_HOST ?? 'localhost',
+            port: process.env.PATIENT_SERVICE_PORT ?? 3000,
             path: '/patient/finalizar/consulta',
             method: 'POST',
             headers: {
@@ -203,6 +222,8 @@ export class MedicoController {
         request.write(data)
         request.end();
 
+        res.set('Access-Control-Allow-Origin', '*');
+
         return res.status(200).json({ "Documento criado":request['outputData']})
     }
 
@@ -212,8 +233,8 @@ export class MedicoController {
         const http = require('node:http')
 
         const resp = http.get({
-            hostname: 'localhost',
-            port: 3000,
+            hostname: process.env.PATIENT_SERVICE_HOST ?? 'localhost',
+            port: process.env.PATIENT_SERVICE_PORT ?? 3000,
             path: '/patient/vizualizar/exame',
             body: {
                 "email": email
@@ -228,6 +249,8 @@ export class MedicoController {
 
             // Toda a resposta foi recebida. Exibir o resultado.
             resp.on('end', () => {
+                res.set('Access-Control-Allow-Origin', '*');
+
                 return res
                     .status(200).json(JSON.parse(data))
             });
