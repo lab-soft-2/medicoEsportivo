@@ -111,15 +111,12 @@ const CadastroMedico: React.FC = () => {
         </div>
       </div>
 
-      {/* Mostrar mensagem de sucesso */}
+      {/* Mostrar mensagem de sucesso ou erro */}
       {resultadoCadastro && (
         <div className="text-green-600 mt-4 text-center">
-          <p>{resultadoCadastro.mensagem}</p>
-          <p>Nome: {resultadoCadastro.medico.nome}</p>
-          <p>Email: {resultadoCadastro.medico.email}</p>
+          Cadastro realizado com sucesso!
         </div>
       )}
-      {/* Mostrar mensagem de erro */}
       {erroCadastro && (
         <div className="text-red-600 mt-4 text-center">
           {erroCadastro}
