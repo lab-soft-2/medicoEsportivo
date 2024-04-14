@@ -22,7 +22,7 @@ export class MedicoController {
 
         return res
             .status(200)
-            .json({ message: "User created successfully", Medico });
+            .json({ message: "User created successfully", medico });
     }
 
     static async medicoLogin(req: Request, res: Response) {
