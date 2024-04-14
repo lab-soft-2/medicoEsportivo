@@ -27,6 +27,8 @@ ENV TYPEORM_DATABASE medic_db
 ENV TYPEORM_SYNCHRONIZE false
 ENV TYPEORM_ENTITIES dist/core/components/**/entity.js
 ENV TYPEORM_MIGRATIONS dist/config/db/migration/**/*.js
+ENV PATIENT_SERVICE_HOST  https://patient-service-lojv4wqana-uc.a.run.app/
+ENV PATIENT_SERVICE_PORT 3000
 
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=dependencies /app/package.json ./package.json
