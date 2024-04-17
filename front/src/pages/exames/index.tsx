@@ -61,18 +61,14 @@ const Exames: React.FC = () => {
           </div>
         </form>
         {erroVisualizacao && (
-          <div className="text-red-600 mt-4 text-center">
-            {erroVisualizacao}
-          </div>
+          <div className="text-red-600 mt-4 text-center">{erroVisualizacao}</div>
         )}
         {exame && (
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div className="p-6">
-              <p className="text-lg font-semibold text-gray-900">Exame</p>
-              <p className="text-sm text-gray-500">Email Médico: {exame.emailMedico}</p>
-              <p className="text-sm text-gray-500">Email Paciente: {exame.emailPaciente}</p>
-              {/* Adicione mais informações dos exames conforme necessário */}
+          <div className="mt-4">
+            <div className="text-green-600 mt-4 text-center">
+              Lista de exames:
             </div>
+            <pre>{JSON.stringify(exame, null, 2)}</pre>
           </div>
         )}
       </div>

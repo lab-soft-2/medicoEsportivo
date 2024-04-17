@@ -48,25 +48,17 @@ const Agenda: React.FC = () => {
               </button>
             </div>
           </form>
-          {/* Mostrar mensagem de erro, se houver */}
           {erroConsulta && (
-            <div className="text-red-600 mt-4 text-center">
-              {erroConsulta}
+          <div className="text-red-600 mt-4 text-center">{erroConsulta}</div>
+        )}
+        {consultas && (
+          <div className="mt-4">
+            <div className="text-green-600 mt-4 text-center">
+              Agendamentos:
             </div>
-          )}
-          {/* Mostrar consultas */}
-          <div className="grid grid-cols-1 gap-8">
-            {consultas.map((consulta, index) => (
-              <div key={index} className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div className="p-6">
-                  <p className="text-lg font-semibold text-gray-900">Consulta {index + 1}</p>
-                  <p className="text-sm text-gray-500">Email Médico: {consulta.emailMedico}</p>
-                  <p className="text-sm text-gray-500">Data: {consulta.data}</p>
-                  {/* Adicione mais informações das consultas conforme necessário */}
-                </div>
-              </div>
-            ))}
+            <pre>{JSON.stringify(consultas, null, 2)}</pre>
           </div>
+        )}
         </div>
       </div>
     </>

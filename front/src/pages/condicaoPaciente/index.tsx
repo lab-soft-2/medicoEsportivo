@@ -13,7 +13,7 @@ interface PacienteEditado {
 const Laudo: React.FC = () => {
   const [emailMedico, setEmailMedico] = useState('');
   const [emailPaciente, setEmailPaciente] = useState('');
-  const [novaCondicao, setNovaCondicao] = useState<Record<string, any>>({});
+  const [novaCondicao, setNovaCondicao] = useState<string>("");
   const [idConsulta, setIdConsulta] = useState('');
   const [pacienteEditado, setPacienteEditado] = useState<PacienteEditado | null>(null);
   const [erroEmissao, setErroEmissao] = useState<string | null>(null);
@@ -77,15 +77,15 @@ const Laudo: React.FC = () => {
         />
       </div>
       <div className="mb-8">
-        <label htmlFor="novaCondicao" className="block text-sm font-medium leading-6 text-gray-900">
-          Nova Condição (JSON)
+      <label htmlFor="documento" className="block text-sm font-medium leading-6 text-gray-900">
+          Nova Condição
         </label>
         <textarea
-          id="novaCondicao"
-          value={JSON.stringify(novaCondicao, null, 2)}
-          onChange={(e) => setNovaCondicao(JSON.parse(e.target.value))}
-          rows={6}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50"
+          id="documento"
+          value={novaCondicao}
+          onChange={(e) => setNovaCondicao(e.target.value)}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-600 focus:ring focus:ring-indigo-600 focus:ring-opacity-50 h-32"
+          required
         />
       </div>
       <div className="mb-8">
@@ -110,22 +110,17 @@ const Laudo: React.FC = () => {
       </div>
 
       {/* Mostrar dados do paciente editado */}
-      {pacienteEditado && (
-        <div className="mt-4 p-4 border border-gray-200 rounded-md">
-          <h3 className="text-lg font-semibold mb-2">Dados do Paciente Editado:</h3>
-          <p><strong>Email Médico:</strong> {pacienteEditado.medico}</p>
-          <p><strong>Email Paciente:</strong> {pacienteEditado.paciente}</p>
-          <p><strong>Nova Condição:</strong> {JSON.stringify(pacienteEditado.newcondition)}</p>
-          <p><strong>ID Consulta:</strong> {pacienteEditado.consulta}</p>
-        </div>
-      )}
-
-      {/* Mostrar mensagem de erro */}
       {erroEmissao && (
-        <div className="text-red-600 mt-4 text-center">
-          {erroEmissao}
-        </div>
-      )}
+          <div className="text-red-600 mt-4 text-center">{erroEmissao}</div>
+        )}
+        {pacienteEditado && (
+          <div className="mt-4">
+            <div className="text-green-600 mt-4 text-center">
+              Nova situação do paciente inserida com sucesso!
+            </div>
+            <pre>{JSON.stringify(pacienteEditado, null, 2)}</pre>
+          </div>
+        )}
     </form>
     </>
   );
