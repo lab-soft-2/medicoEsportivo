@@ -113,10 +113,8 @@ export class MedicoController {
         const http = require('node:http')
 
         const resp = http.get({
-            hostname: 'patient-service-lojv4wqana-uc.a.run.app',
-            // hostname: process.env.PATIENT_SERVICE_HOST ?? 'localhost',
-            port: 3000,
-            // port: process.env.PATIENT_SERVICE_PORT ?? 3000,
+            hostname: process.env.PATIENT_SERVICE_HOST ?? 'localhost',
+            port: process.env.PATIENT_SERVICE_PORT ?? 3000,
             path: '/patient/vizualizar/agenda/medico',
             body: {
                 "email": email
